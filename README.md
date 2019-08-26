@@ -5,7 +5,7 @@ Python [Redash](https://redash.io/) API Client
 ## Installation
 
 ```sh
-$ pip install git+https://github.com/MasamichiIdeue/redquery.git
+$ pip install git+https://github.com/faithnh/redquery.git
 ```
 
 
