@@ -62,6 +62,7 @@ class Client(object):
     def _post_query(self, query):
         data = {
             'query': query,
+            'max_age': 0,
             'data_source_id': self.data_source_id
         }
         return self._api_post('query_results', data)
