@@ -53,7 +53,7 @@ class Client(object):
         retried = 0
         while not self._query_completed(res_j):
             time.sleep(interval_sec)
-            res_j = self._post_query(query, interval_sec + 1).json()
+            res_j = self._post_query(query, interval_sec * 2).json()
             retried += 1
             if retried > retry_num:
                 raise Exception('Max retry num reached.')
