@@ -48,8 +48,8 @@ class Client(object):
 
         return queries
 
-    def query(self, query, retry_num=30, interval_sec=1):
-        res_j = self._post_query(query).json()
+    def query(self, query, retry_num=30, interval_sec=1, max_age=-1):
+        res_j = self._post_query(query, max_age).json()
         retried = 0
         while not self._query_completed(res_j):
             time.sleep(interval_sec)
@@ -59,10 +59,10 @@ class Client(object):
                 raise Exception('Max retry num reached.')
         return QueryResult.create(res_j)
 
-    def _post_query(self, query):
+    def _post_query(self, query, max_age=-1):
         data = {
             'query': query,
-            'max_age': 0,
+            'max_age': max_age,
             'data_source_id': self.data_source_id
         }
         return self._api_post('query_results', data)
